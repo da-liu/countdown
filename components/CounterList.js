@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, FlatList, Button } from 'react-native';
 import ActionButton from 'react-native-action-button';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { events } from '../api/db.json';
 import Counter from './Counter';
 
@@ -30,11 +31,15 @@ class CounterList extends Component {
           <Counter key={item.key} event={item} />
         )}
       />,
-      <ActionButton
-        title="Add Counter"
-        buttonColor="red"
-        onPress={() => this.props.navigation.navigate('CounterForm')}
-      />
+      <ActionButton title="Add Counter" buttonColor="red">
+        <ActionButton.Item
+          onPress={() => this.props.navigation.navigate('CounterForm')}
+          buttonColor="#9b59b6"
+          title="New Counter"
+        >
+          <Icon name="md-create" style={{ height: 50, fontSize: 40 }} />,
+        </ActionButton.Item>
+      </ActionButton>
     ];
   }
 }
