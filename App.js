@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import CounterList from './components/CounterList';
+import CounterForm from './components/CounterForm';
 
 const Root = createStackNavigator(
   {
-    Home: CounterList
+    CounterList: CounterList,
+    CounterForm: CounterForm
   },
   {
-    initialRouteName: 'Home'
+    initialRouteName: 'CounterList'
   }
 );
 

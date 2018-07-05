@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, FlatList } from 'react-native';
+import { Text, FlatList, Button } from 'react-native';
 import { events } from '../api/db.json';
 import Counter from './Counter';
 
@@ -9,7 +9,7 @@ class CounterList extends Component {
   };
 
   static navigationOptions = {
-    title: 'Counter List'
+    title: 'Countdowns'
   };
 
   componentDidMount() {
@@ -22,12 +22,18 @@ class CounterList extends Component {
   }
 
   render() {
-    return (
+    return [
       <FlatList
         data={this.state.events}
-        renderItem={({ item, index }) => <Counter event={item} />}
+        renderItem={({ item, index }) => (
+          <Counter key={item.key} event={item} />
+        )}
+      />,
+      <Button
+        title="Add Counter"
+        onPress={() => this.props.navigation.navigate('CounterForm')}
       />
-    );
+    ];
   }
 }
 
