@@ -37,7 +37,7 @@ class CounterList extends Component {
           buttonColor="#9b59b6"
           title="New Counter"
         >
-          <Icon name="md-create" style={{ height: 50, fontSize: 40 }} />,
+          <Icon name="md-create" style={{ height: 25, fontSize: 25 }} />,
         </ActionButton.Item>
       </ActionButton>
     ];
