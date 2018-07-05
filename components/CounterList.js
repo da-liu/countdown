@@ -8,6 +8,10 @@ class CounterList extends Component {
     events: []
   };
 
+  static navigationOptions = {
+    title: 'Counter List'
+  };
+
   componentDidMount() {
     setInterval(() => {
       this.setState({

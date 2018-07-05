@@ -7,10 +7,6 @@ import differenceInMinutes from 'date-fns/difference_in_minutes';
 import differenceInSeconds from 'date-fns/difference_in_seconds';
 
 const styles = StyleSheet.create({
-  container: {
-    borderWidth: 0.5,
-    borderColor: 'steelblue'
-  },
   card: {
     backgroundColor: '#FFFFFF',
     padding: 5,
@@ -18,19 +14,32 @@ const styles = StyleSheet.create({
   },
   cardHeader: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    padding: 5
   },
   datetime: {
+    color: '#a3a3a3',
     width: '30%',
     textAlign: 'right'
   },
   title: {
     marginLeft: 10
   },
-  count: {
+  countContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around'
+  },
+  count: {
+    flex: 1,
+    alignItems: 'center'
+  },
+  countLabel: {
+    fontSize: 13,
+    color: '#a3a3a3'
+  },
+  countValue: {
+    fontSize: 40
   }
 });
 
@@ -65,16 +74,16 @@ class Counter extends Component {
     const countdowns = countBreakdown(datetime);
 
     return (
-      <View style={[styles.container, styles.card]}>
+      <View style={styles.card}>
         <View style={styles.cardHeader}>
           <Text style={styles.datetime}>{formatDatetime(datetime)}</Text>
           <Text style={styles.title}>{title}</Text>
         </View>
-        <View style={styles.count}>
+        <View style={styles.countContainer}>
           {countdowns.map(({ label, diff }) => (
-            <View>
-              <Text>{diff}</Text>
-              <Text>{label.toUpperCase()}</Text>
+            <View style={styles.count} key={label}>
+              <Text style={styles.countValue}>{diff}</Text>
+              <Text style={styles.countLabel}>{label.toUpperCase()}</Text>
             </View>
           ))}
         </View>
