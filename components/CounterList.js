@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, FlatList, Button } from 'react-native';
+import ActionButton from 'react-native-action-button';
 import { events } from '../api/db.json';
 import Counter from './Counter';
 
@@ -29,8 +30,9 @@ class CounterList extends Component {
           <Counter key={item.key} event={item} />
         )}
       />,
-      <Button
+      <ActionButton
         title="Add Counter"
+        buttonColor="red"
         onPress={() => this.props.navigation.navigate('CounterForm')}
       />
     ];
