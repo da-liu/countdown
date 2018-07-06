@@ -6,9 +6,9 @@ import {
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 
 const styles = StyleSheet.create({
-  form: {},
   input: {
     backgroundColor: 'white',
     height: 45,
@@ -34,20 +34,39 @@ const styles = StyleSheet.create({
 class CounterForm extends Component {
   state = {
     title: '',
-    datetime: ''
+    datetime: '',
+    isDatepickerVisible: false
   };
 
   handleTextChange = title => this.setState({ title });
 
+  handleDatePicked = date => {
+    this.setState({
+      datetime: date.toString(),
+      isDatepickerVisible: false
+    });
+  };
+
+  hideDatetimePicker = () => this.setState({ isDatepickerVisible: false });
+
+  showDatetimePicker = () => this.setState({ isDatepickerVisible: true });
+
   render() {
-    console.log(this.state.title);
+    const { title, datetime, isDatepickerVisible } = this.state;
     return (
       <View>
         <TextInput
           placeholder="Event name"
           style={styles.input}
-          value={this.state.title}
+          value={title}
           onChangeText={this.handleTextChange}
+        />
+        <TextInput
+          placeholder="Date & Time"
+          style={styles.input}
+          value={datetime}
+          onFocus={this.showDatetimePicker}
+          editable={!isDatepickerVisible}
         />
         <TouchableOpacity
           style={styles.addButton}
@@ -57,6 +76,11 @@ class CounterForm extends Component {
         >
           <Text style={styles.addButtonText}>Add Counter</Text>
         </TouchableOpacity>
+        <DateTimePicker
+          isVisible={isDatepickerVisible}
+          onConfirm={this.handleDatePicked}
+          onCancel={this.hideDatetimePicker}
+        />
       </View>
     );
   }
