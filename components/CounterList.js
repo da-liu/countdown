@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, FlatList, View } from 'react-native';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { events } from '../api/db.json';
+import service from '../api/service';
 import Counter from './Counter';
 
 class CounterList extends Component {
@@ -14,13 +14,23 @@ class CounterList extends Component {
     title: 'Countdowns'
   };
 
+  getEvents = () => {
+    service('events', 'get')
+    .then(res => res.json())
+    .then(events => this.setState({ events }))
+    .catch(err => console.log(err));
+  }
+
   componentDidMount() {
     setInterval(() => {
       this.setState({
         events: [...this.state.events]
       });
     }, 1000);
-    this.setState({ events });
+    
+    this.props.navigation.addListener('didFocus', () => {
+      this.getEvents()
+    })
   }
 
   render() {

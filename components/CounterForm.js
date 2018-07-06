@@ -7,6 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+import service from '../api/service';
 import { formatDatetime } from '../utils/datetime';
 
 const styles = StyleSheet.create({
@@ -52,7 +53,14 @@ class CounterForm extends Component {
   showDatetimePicker = () => this.setState({ isDatepickerVisible: true });
 
   handleAdd = () => {
-    this.props.navigation.goBack();
+    const { title, datetime } = this.state;
+    const body = JSON.stringify({
+      title,
+      datetime: datetime.toISOString()
+    });
+    service('events', 'post', body)
+      .then(() => this.props.navigation.goBack())
+      .catch(err => console.log(err));
   };
 
   render() {
@@ -76,7 +84,7 @@ class CounterForm extends Component {
           style={styles.addButton}
           title="Add Counter"
           accessibilityLabel="More things on accessibility"
-          onPress={this.handleAdd}
+          onPress={() => this.handleAdd()}
         >
           <Text style={styles.addButtonText}>Add Counter</Text>
         </TouchableOpacity>
