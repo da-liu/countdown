@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import format from 'date-fns/format';
-import differenceInDays from 'date-fns/difference_in_days';
-import differenceInHours from 'date-fns/difference_in_hours';
-import differenceInMinutes from 'date-fns/difference_in_minutes';
-import differenceInSeconds from 'date-fns/difference_in_seconds';
+import { formatDatetime } from '../utils/datetime';
+import { countBreakdown } from '../utils/datetime';
 
 const styles = StyleSheet.create({
   card: {
@@ -42,28 +39,6 @@ const styles = StyleSheet.create({
     fontSize: 40
   }
 });
-
-const formatDatetime = dateString => {
-  return format(new Date(dateString), 'D MMM YYYY');
-};
-
-const countBreakdown = dateString => {
-  return [
-    { label: 'days', diff: differenceInDays(new Date(dateString), new Date()) },
-    {
-      label: 'hours',
-      diff: differenceInHours(new Date(dateString), new Date()) % 24
-    },
-    {
-      label: 'minutes',
-      diff: differenceInMinutes(new Date(dateString), new Date()) % 60
-    },
-    {
-      label: 'seconds',
-      diff: differenceInSeconds(new Date(dateString), new Date()) % 60
-    }
-  ];
-};
 
 class Counter extends Component {
   render() {

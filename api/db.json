@@ -1,17 +1,17 @@
 {
   "events": [
     {
-      "key": "1",
+      "id": "1",
       "title": "Anniversary",
       "datetime": "2018-07-16T16:00:15.000Z"
     },
     {
-      "key": "2",
+      "id": "2",
       "title": "Bacchanalia",
       "datetime": "2018-11-13T23:00:00.000Z"
     },
     {
-      "key": "3",
+      "id": "3",
       "title": "Cruise ship",
       "datetime": "2019-01-09T19:00:30.000Z"
     }

@@ -7,6 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+import { formatDatetime } from '../utils/datetime';
 
 const styles = StyleSheet.create({
   input: {
@@ -21,7 +22,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'steelblue',
     height: 45,
-    color: 'red',
     margin: 5,
     borderRadius: 4
   },
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 class CounterForm extends Component {
   state = {
     title: '',
-    datetime: '',
+    datetime: null,
     isDatepickerVisible: false
   };
 
@@ -42,7 +42,7 @@ class CounterForm extends Component {
 
   handleDatePicked = date => {
     this.setState({
-      datetime: date.toString(),
+      datetime: date,
       isDatepickerVisible: false
     });
   };
@@ -50,6 +50,10 @@ class CounterForm extends Component {
   hideDatetimePicker = () => this.setState({ isDatepickerVisible: false });
 
   showDatetimePicker = () => this.setState({ isDatepickerVisible: true });
+
+  handleAdd = () => {
+    this.props.navigation.goBack();
+  };
 
   render() {
     const { title, datetime, isDatepickerVisible } = this.state;
@@ -64,7 +68,7 @@ class CounterForm extends Component {
         <TextInput
           placeholder="Date & Time"
           style={styles.input}
-          value={datetime}
+          value={datetime ? formatDatetime(datetime) : ''}
           onFocus={this.showDatetimePicker}
           editable={!isDatepickerVisible}
         />
@@ -72,7 +76,7 @@ class CounterForm extends Component {
           style={styles.addButton}
           title="Add Counter"
           accessibilityLabel="More things on accessibility"
-          onPress={() => this.props.navigation.goBack()}
+          onPress={this.handleAdd}
         >
           <Text style={styles.addButtonText}>Add Counter</Text>
         </TouchableOpacity>
@@ -80,6 +84,7 @@ class CounterForm extends Component {
           isVisible={isDatepickerVisible}
           onConfirm={this.handleDatePicked}
           onCancel={this.hideDatetimePicker}
+          supportedOrientations={['portrait', 'landscape']}
         />
       </View>
     );
