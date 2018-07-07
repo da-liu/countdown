@@ -7,7 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import service from '../api/service';
+import service from '../service';
 import { formatDatetime } from '../utils/datetime';
 
 const styles = StyleSheet.create({

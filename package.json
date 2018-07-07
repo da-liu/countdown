@@ -8,7 +8,6 @@
   },
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "server": "json-server --watch ./api/db.json",
     "test": "jest"
   },
   "jest": {
@@ -17,13 +16,11 @@
   "dependencies": {
     "date-fns": "^1.29.0",
     "expo": "^27.0.1",
-    "json-server": "^0.14.0",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-27.0.0.tar.gz",
     "react-native-action-button": "^2.8.4",
     "react-native-modal-datetime-picker": "^6.0.0",
     "react-native-vector-icons": "^4.6.0",
-    "react-navigation": "^2.5.5",
-    "uuid": "^3.3.2"
+    "react-navigation": "^2.5.5"
   }
 }

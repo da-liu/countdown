@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, FlatList, View } from 'react-native';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
-import service from '../api/service';
+import service from '../service';
 import Counter from './Counter';
 
 class CounterList extends Component {
@@ -27,7 +27,7 @@ class CounterList extends Component {
         events: [...this.state.events]
       });
     }, 1000);
-    
+
     this.props.navigation.addListener('didFocus', () => {
       this.getEvents()
     })
