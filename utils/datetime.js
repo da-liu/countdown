@@ -9,19 +9,24 @@ export const formatDatetime = dateString => {
 };
 
 export const countBreakdown = dateString => {
+  const datetimeEvent = new Date(dateString);
+  const datetimeNow = new Date();
   return [
-    { label: 'days', diff: differenceInDays(new Date(dateString), new Date()) },
+    {
+      label: 'days',
+      diff: differenceInDays(datetimeEvent, datetimeNow)
+    },
     {
       label: 'hours',
-      diff: differenceInHours(new Date(dateString), new Date()) % 24
+      diff: differenceInHours(datetimeEvent, datetimeNow) % 24
     },
     {
       label: 'minutes',
-      diff: differenceInMinutes(new Date(dateString), new Date()) % 60
+      diff: differenceInMinutes(datetimeEvent, datetimeNow) % 60
     },
     {
       label: 'seconds',
-      diff: differenceInSeconds(new Date(dateString), new Date()) % 60
+      diff: differenceInSeconds(datetimeEvent, datetimeNow) % 60
     }
   ];
 };
