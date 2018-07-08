@@ -16,10 +16,14 @@ class CounterList extends Component {
 
   getEvents = () => {
     service('events', 'get')
-    .then(res => res.json())
-    .then(events => this.setState({ events }))
-    .catch(err => console.log(err));
-  }
+      .then(res => res.json())
+      .then(events => {
+        this.setState({
+          events: [...events.sort((a, b) => a.datetime > b.datetime)]
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
   componentDidMount() {
     setInterval(() => {
@@ -29,8 +33,8 @@ class CounterList extends Component {
     }, 1000);
 
     this.props.navigation.addListener('didFocus', () => {
-      this.getEvents()
-    })
+      this.getEvents();
+    });
   }
 
   render() {
